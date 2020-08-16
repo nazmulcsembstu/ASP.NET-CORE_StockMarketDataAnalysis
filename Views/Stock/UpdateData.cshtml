@@ -1,0 +1,96 @@
+﻿@model IEnumerable<CoreWeb.Models.StockMarketClass>
+
+@{
+    ViewData["Title"] = "DataUpdate";
+}
+
+<h1>DataUpdate</h1>
+
+<p style="text-align:center;">
+    <a asp-action="Create">AddNewItem</a>
+</p>
+
+@Html.Raw(TempData["CreateMessage"])
+@Html.Raw(TempData["EditMessage"])
+@Html.Raw(TempData["DeleteMessage"])
+@Html.Raw(TempData["UploadMessage"])
+
+<style>
+    table {
+        margin: 0 auto;
+        font-size: large;
+        border: 1px solid black;
+    }
+
+    h1 {
+        text-align: center;
+        color: #006600;
+        font-size: xx-large;
+        font-family: 'Gill Sans', 'Gill Sans MT', ' Calibri', 'Trebuchet MS', 'sans-serif';
+    }
+
+    td {
+        background-color: #E4F5D4;
+        border: 1px solid black;
+    }
+
+    th,
+    td {
+        font-weight: bold;
+        border: 1px solid black;
+        padding: 10px;
+        text-align: center;
+    }
+
+    td {
+        font-weight: lighter;
+    }
+</style>
+
+<table id="table">
+    <thead>
+        <tr>
+            <th>Date</th>
+            <th>Trade_Code</th>
+            <th>High</th>
+            <th>Low</th>
+            <th>Open</th>
+            <th>Close</th>
+            <th>Volume</th>
+            <th>Operation</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.date)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.trade_code)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.high)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.low)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.open)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.close)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.volume)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.id">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.id">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
